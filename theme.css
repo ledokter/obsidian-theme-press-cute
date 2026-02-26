@@ -1,146 +1,975 @@
-# Press-Cute 🗞️
+/* =========================================================
+   PRESS-CUTE — Thème Obsidian inspiré de La Dépêche du Midi
+   Style journal papier recyclé, machine à écrire, press room
+   ========================================================= */
 
-> Un thème Obsidian inspiré de l'esthétique de la **presse écrite** — ambiance journal papier recyclé, encre fraîche et salle de rédaction.
+/* ── Imports typographiques ── */
+/* Cormorant Garamond = H2-H6 : serif condensée élégante bold italic style La Dépêche */
+/* Lora               = corps de texte journal (serif lisible)                         */
+/* Special Elite      = blockquotes, footnotes, machine à écrire                      */
+/* Playfair Display   = H1 seulement (manchette grand format)                         */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Special+Elite&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap');
 
-![Version](https://img.shields.io/badge/version-1.0.0-c8102e?style=flat-square)
-![Obsidian](https://img.shields.io/badge/Obsidian-1.0%2B-7c3aed?style=flat-square&logo=obsidian)
-![License](https://img.shields.io/badge/license-MIT-1a3a5c?style=flat-square)
+/* =========================================================
+   VARIABLES GLOBALES
+   ========================================================= */
+.theme-light,
+.theme-dark {
+  /* Fond papier journal recyclé — gris légèrement sombre */
+  --color-base-00: #b8b0a0;   /* fond principal */
+  --color-base-05: #b0a898;
+  --color-base-10: #a8a090;
+  --color-base-20: #9e9688;
+  --color-base-25: #968e80;
+  --color-base-30: #8c8478;
+  --color-base-35: #847c70;
+  --color-base-40: #7c7468;
+  --color-base-50: #6e6860;
+  --color-base-60: #504a44;
+  --color-base-70: #3a3530;
+  --color-base-100: #1a1612;
 
----
+  /* Couleurs presse */
+  --press-red:        #c8102e;
+  --press-red-dark:   #9e0020;
+  --press-red-light:  #e63050;
+  --press-ink:        #1a1612;
+  --press-paper:      #b8b0a0;
+  --press-paper-dark: #9a9288;
+  --press-gold:       #c8a227;
+  --press-midnight:   #0d1b2a;  /* fond blocs de code */
+  --press-white:      #f5f0e8;
 
-## ✨ Aperçu
+  /* Tokens de l'interface Obsidian */
+  --background-primary:          var(--press-paper);
+  --background-primary-alt:      #b0a898;
+  --background-secondary:        #a8a090;
+  --background-secondary-alt:    #a09890;
+  --background-modifier-border:  #8c8478;
+  --background-modifier-hover:   rgba(200, 16, 46, 0.08);
+  --background-modifier-active-hover: rgba(200, 16, 46, 0.14);
 
-Press-Cute transforme ton vault en une salle de rédaction de journal. Chaque élément typographique a été pensé pour évoquer la presse écrite traditionnelle tout en restant parfaitement lisible à l'écran.
+  --text-normal:         #1a1612;
+  --text-muted:          #504a44;
+  --text-faint:          #7c7468;
+  --text-on-accent:      #f5f0e8;
+  --text-accent:         var(--press-red);
+  --text-accent-hover:   var(--press-red-dark);
 
----
+  --interactive-accent:        var(--press-red);
+  --interactive-accent-hover:  var(--press-red-dark);
 
-## 🎨 Caractéristiques
+  --font-text-theme:    'Lora', Georgia, 'Times New Roman', serif;
+  --font-interface:     'Cormorant Garamond', Georgia, serif;
+  --font-monospace:     'Special Elite', 'Courier Prime', 'Courier New', monospace;
 
-### Typographie
-| Élément | Police | Style |
-|---|---|---|
-| **H1** | Playfair Display | Fond rouge, texte blanc, capitales — style manchette |
-| **H2 → H6** | Cormorant Garamond | Bleu encre, bold italic, hiérarchie décroissante |
-| **Corps de texte** | Lora | Serif élégant, justifié, espacement journal |
-| **Blockquotes & Notes** | Special Elite | Machine à écrire ancienne |
-| **Code** | Special Elite | Fond bleu nuit, colorisation GitHub Dark |
+  /* Police titre La Dépêche = Cormorant Garamond Bold Italic (serif condensée journal) */
+  --font-headline:      'Cormorant Garamond', Georgia, 'Times New Roman', serif;
 
-### Couleurs
-| Nom | Valeur | Usage |
-|---|---|---|
-| Rouge presse | `#c8102e` | Accents, H1, bordures, listes |
-| Bleu encre | `#1a3a5c` | Titres H2–H6 |
-| Papier recyclé | `#b8b0a0` | Fond principal |
-| Bleu nuit | `#0d1b2a` | Fond des blocs de code |
+  /* Bleu encre journal — couleur titres H2-H5 */
+  --press-ink-blue:     #1a3a5c;
 
-### Fonctionnalités
-- 📰 **Fond papier journal recyclé** avec texture de lignes subtiles
-- 🔴 **H1 sur fond rouge** — style Une de journal, texte blanc
-- 🔵 **H2–H6 en Cormorant Garamond** bold italic bleu encre
-- ⌨️ **Blockquotes & Footnotes** en police machine à écrire (Special Elite)
-- 💻 **Blocs de code** : fond bleu nuit `#0d1b2a` + colorisation syntaxique GitHub Dark
-- 🔢 **Listes numérotées** : chiffres blancs sur ronds rouges
-- 🔺 **Drop cap** rouge sur le premier paragraphe
-- 🏷️ **Tags** style étiquette presse rouge
-- 📋 **Callouts** avec titre Cormorant Garamond bold
-- 🌑 **File Explorer Focus** : dimming des dossiers inactifs
+  --font-text-size:     16px;
+  --line-height-normal: 1.75;
 
----
+  --h1-size: 2.2em;
+  --h2-size: 1.7em;
+  --h3-size: 1.4em;
+  --h4-size: 1.2em;
+  --h5-size: 1.05em;
+  --h6-size: 0.95em;
 
-## 📦 Installation
+  --h1-weight: 900;
+  --h2-weight: 700;
+  --h3-weight: 700;
 
-### Via le gestionnaire de thèmes Obsidian *(recommandé)*
-> Publication en cours — disponible prochainement dans la galerie communautaire.
+  --h1-color:  #f5f0e8;
+  --h2-color:  var(--press-red-dark);
+  --h3-color:  var(--press-ink);
+  --h4-color:  var(--press-ink);
+  --h5-color:  var(--press-ink);
+  --h6-color:  var(--press-muted);
 
-### Installation manuelle
-1. Télécharge la [dernière release](../../releases/latest) (fichier `.zip`)
-2. Extrais le dossier `Press-Cute/`
-3. Copie-le dans `.obsidian/themes/` de ton vault
-4. Redémarre Obsidian
-5. **Paramètres → Apparence → Thèmes** → sélectionne **Press-Cute**
+  --h1-font:   'Playfair Display', Georgia, serif;
+  --h2-font:   'Cormorant Garamond', Georgia, serif;
+  --h3-font:   'Cormorant Garamond', Georgia, serif;
 
-```
-ton-vault/
-└── .obsidian/
-    └── themes/
-        └── Press-Cute/        ← le dossier doit s'appeler exactement "Press-Cute"
-            ├── manifest.json
-            └── theme.css
-```
+  --divider-color: #8c8478;
 
-> ⚠️ Le nom du dossier doit être **exactement** `Press-Cute` (respecter la casse).
+  --list-indent: 2em;
 
----
+  --checkbox-color:       var(--press-red);
+  --checkbox-color-hover: var(--press-red-dark);
 
-## 🌐 Polices requises
+  --tag-color:        var(--press-red);
+  --tag-background:   rgba(200, 16, 46, 0.10);
+  --tag-border-color: var(--press-red);
+  --tag-radius:       3px;
 
-Press-Cute charge automatiquement ses polices depuis **Google Fonts** (connexion internet nécessaire au premier chargement) :
+  --link-color:          var(--press-red);
+  --link-color-hover:    var(--press-red-dark);
+  --link-decoration:     underline;
+  --link-unresolved-color: #9e9688;
+  --link-unresolved-opacity: 0.8;
+  --link-unresolved-decoration-color: #9e9688;
 
-- [Cormorant Garamond](https://fonts.google.com/specimen/Cormorant+Garamond) — titres H2–H6
-- [Lora](https://fonts.google.com/specimen/Lora) — corps de texte
-- [Playfair Display](https://fonts.google.com/specimen/Playfair+Display) — H1
-- [Special Elite](https://fonts.google.com/specimen/Special+Elite) — blockquotes, footnotes, code
+  --scrollbar-bg:        transparent;
+  --scrollbar-thumb-bg:  #8c8478;
 
----
+  --modal-background:    #a8a090;
+  --prompt-background:   #b0a898;
 
-## 🖥️ Compatibilité
+  --nav-item-color:            var(--text-normal);
+  --nav-item-color-hover:      var(--press-red);
+  --nav-item-color-active:     var(--press-red);
+  --nav-item-background-hover: rgba(200, 16, 46, 0.08);
+  --nav-item-background-active: rgba(200, 16, 46, 0.14);
 
-| Plateforme | Statut |
-|---|---|
-| Obsidian Desktop (Windows / macOS / Linux) | ✅ Testé |
-| Obsidian Mobile (iOS / Android) | ⚠️ Non testé |
-| Mode clair | ✅ |
-| Mode sombre | ✅ (fonctionne, optimisé pour le clair) |
+  --code-background:     var(--press-midnight);
+  --code-normal:         #e6edf3;
+  --code-size:           0.9em;
+}
 
----
+/* =========================================================
+   TYPOGRAPHIE GLOBALE — Lora (journal) partout par défaut
+   Exceptions : blockquote / footnotes = Special Elite (machine à écrire)
+   ========================================================= */
+body {
+  font-family: var(--font-text-theme);
+  background-color: var(--press-paper);
+  color: var(--press-ink);
+}
 
-## 📁 Structure du dépôt
+.markdown-rendered,
+.markdown-source-view,
+.cm-content {
+  font-family: var(--font-text-theme) !important;
+  font-size: var(--font-text-size);
+  line-height: var(--line-height-normal);
+  color: var(--press-ink);
+  letter-spacing: 0.01em;
+}
 
-```
-Press-Cute/
-├── theme.css          # Feuille de style principale (~950 lignes)
-├── manifest.json      # Métadonnées du thème (nom, version, compatibilité)
-├── screenshot.png     # Aperçu 512×288px pour la galerie Obsidian
-└── README.md          # Ce fichier
-```
+/* Interface Obsidian = Cormorant Garamond (serif condensée style La Dépêche) */
+.nav-file-title,
+.nav-folder-title,
+.workspace-tab-header-inner-title,
+.view-header-title,
+.modal-title,
+.menu-item-title,
+.side-dock-title {
+  font-family: var(--font-headline) !important;
+}
 
----
+/* ─ EXCEPTIONS machine à écrire (Special Elite) ─────────────── */
+/* Blockquotes = Special Elite */
+.markdown-rendered blockquote,
+.markdown-preview-view blockquote,
+.markdown-rendered blockquote p,
+.markdown-preview-view blockquote p {
+  font-family: 'Special Elite', 'Courier Prime', 'Courier New', monospace !important;
+}
 
-## 🗺️ Feuille de route
+/* Footnotes = Special Elite */
+.markdown-rendered .footnotes,
+.markdown-preview-view .footnotes,
+.markdown-rendered .footnotes p,
+.markdown-preview-view .footnotes p,
+.markdown-rendered sup.footnote-ref,
+.markdown-preview-view sup.footnote-ref {
+  font-family: 'Special Elite', 'Courier Prime', 'Courier New', monospace !important;
+}
 
-- [ ] Screenshot officiel pour la galerie
-- [ ] Support complet du mode sombre
-- [ ] Variables Style Settings pour personnalisation
-- [ ] Soumission à la galerie communautaire Obsidian
+/* =========================================================
+   GRANDES MAJUSCULES ROUGES — style Drop Cap journal
+   ========================================================= */
 
----
+/* Première lettre d'un paragraphe après H1/H2 */
+.markdown-rendered p:first-of-type::first-letter,
+.markdown-preview-view p:first-of-type::first-letter {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 3.8em;
+  font-weight: 900;
+  color: var(--press-red) !important;
+  float: left;
+  line-height: 0.8;
+  margin-right: 0.08em;
+  margin-top: 0.05em;
+  padding: 0 0.04em 0 0;
+  text-transform: uppercase;
+}
 
-## 🤝 Contribution
+/* Toutes les majuscules en rouge vif dans le contenu */
+.markdown-rendered *:not(h1):not(code):not(pre) {
+  /* on ne peut pas cibler uniquement les majuscules en CSS pur */
+}
 
-Les contributions sont les bienvenues ! N'hésite pas à ouvrir une [issue](../../issues) pour signaler un bug ou suggérer une amélioration.
+/* Strong = rouge + Cormorant Garamond (style manchette) */
+.markdown-rendered strong,
+.markdown-preview-view strong {
+  color: var(--press-red) !important;
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-weight: 800;
+  font-size: 1.05em;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
 
-1. Fork le dépôt
-2. Crée une branche : `git checkout -b fix/mon-correctif`
-3. Commite tes changements : `git commit -m "fix: description du correctif"`
-4. Push : `git push origin fix/mon-correctif`
-5. Ouvre une Pull Request
+/* =========================================================
+   TITRES — Style journal La Dépêche
+   ========================================================= */
 
----
+/* H1 : fond rouge, texte blanc, capitales style Une de journal */
+.markdown-rendered h1,
+.markdown-preview-view h1,
+.inline-title {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  font-size: var(--h1-size);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--press-white) !important;
+  background-color: var(--press-red) !important;
+  padding: 0.15em 0.4em 0.18em 0.4em;
+  margin: 0.8em 0 0.5em 0;
+  border-left: 6px solid var(--press-red-dark);
+  display: block;
+  line-height: 1.2;
+  text-shadow: 1px 2px 4px rgba(0,0,0,0.35);
+}
 
-## 📄 Licence
+/* H2 : Cormorant Garamond — bleu encre, bold italic, bordure rouge */
+.markdown-rendered h2,
+.markdown-preview-view h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: calc(var(--h2-size) * 1.1);
+  font-weight: 700 !important;
+  font-style: italic;
+  color: var(--press-ink-blue) !important;
+  border-bottom: 3px solid var(--press-red);
+  border-left: 5px solid var(--press-red);
+  padding: 0.12em 0.35em 0.12em 0.5em;
+  margin: 1em 0 0.45em 0;
+  letter-spacing: 0.01em;
+  -webkit-text-stroke: 0.3px var(--press-ink-blue);
+  background: linear-gradient(to right, rgba(26,58,92,0.06) 0%, transparent 60%);
+}
 
-Distribué sous licence **MIT**. Voir [`LICENSE`](LICENSE) pour plus d'informations.
+/* H3 : Cormorant Garamond — bleu encre, bold italic, tiret rouge */
+.markdown-rendered h3,
+.markdown-preview-view h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: calc(var(--h3-size) * 1.1);
+  font-weight: 700 !important;
+  font-style: italic;
+  color: var(--press-ink-blue) !important;
+  border-left: 4px solid var(--press-red);
+  padding-left: 0.5em;
+  margin: 0.8em 0 0.35em 0;
+  letter-spacing: 0.01em;
+  -webkit-text-stroke: 0.3px var(--press-ink-blue);
+}
 
----
+/* H4–H6 : Cormorant Garamond — bleu encre décroissant, bold italic */
+.markdown-rendered h4,
+.markdown-preview-view h4 {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: calc(var(--h4-size) * 1.1);
+  font-weight: 700 !important;
+  font-style: italic;
+  color: var(--press-ink-blue) !important;
+  letter-spacing: 0.01em;
+  margin: 0.7em 0 0.3em 0;
+  padding-left: 0.3em;
+  border-left: 3px solid rgba(26,58,92,0.3);
+  -webkit-text-stroke: 0.25px var(--press-ink-blue);
+}
+.markdown-rendered h5,
+.markdown-preview-view h5 {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: calc(var(--h5-size) * 1.1);
+  font-weight: 700 !important;
+  font-style: italic;
+  color: rgba(26,58,92,0.75) !important;
+  letter-spacing: 0.01em;
+  -webkit-text-stroke: 0.2px rgba(26,58,92,0.75);
+}
+.markdown-rendered h6,
+.markdown-preview-view h6 {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: calc(var(--h6-size) * 1.1);
+  font-weight: 700 !important;
+  font-style: italic;
+  color: rgba(26,58,92,0.55) !important;
+  letter-spacing: 0.01em;
+}
 
-## 🙏 Remerciements
+/* =========================================================
+   ÉDITEUR SOURCE — mode édition
+   ========================================================= */
+.cm-header-1 {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  font-size: var(--h1-size) !important;
+  font-weight: 900 !important;
+  text-transform: uppercase;
+  color: var(--press-white) !important;
+  background-color: var(--press-red) !important;
+  padding: 2px 6px !important;
+}
+.cm-header-2 {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: var(--h2-size) !important;
+  font-weight: 700 !important;
+  font-style: italic !important;
+  color: var(--press-ink-blue) !important;
+  letter-spacing: 0.01em;
+  -webkit-text-stroke: 0.3px var(--press-ink-blue);
+}
+.cm-header-3 {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: var(--h3-size) !important;
+  font-weight: 700 !important;
+  font-style: italic !important;
+  color: var(--press-ink-blue) !important;
+  -webkit-text-stroke: 0.3px var(--press-ink-blue);
+}
+.cm-header-4 {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: var(--h4-size) !important;
+  font-weight: 700 !important;
+  font-style: italic !important;
+  color: var(--press-ink-blue) !important;
+  -webkit-text-stroke: 0.25px var(--press-ink-blue);
+}
+.cm-header-5 {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: var(--h5-size) !important;
+  font-weight: 700 !important;
+  font-style: italic !important;
+  color: rgba(26,58,92,0.75) !important;
+  -webkit-text-stroke: 0.2px rgba(26,58,92,0.75);
+}
+.cm-header-6 {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: var(--h6-size) !important;
+  font-weight: 700 !important;
+  font-style: italic !important;
+  color: rgba(26,58,92,0.55) !important;
+}
 
-- Inspiré par l'esthétique de la presse écrite traditionnelle
-- Colorisation syntaxique GitHub Dark via [StylishThemes/Syntax-Themes](https://github.com/StylishThemes/Syntax-Themes)
-- Communauté [Obsidian](https://obsidian.md/) pour la documentation thèmes
+/* =========================================================
+   LISTES À PUCES NUMÉROTÉES — chiffres blancs sur rond rouge
+   ========================================================= */
+.markdown-rendered ol,
+.markdown-preview-view ol {
+  counter-reset: press-counter;
+  list-style: none;
+  padding-left: 2.5em;
+}
 
----
+.markdown-rendered ol > li,
+.markdown-preview-view ol > li {
+  counter-increment: press-counter;
+  position: relative;
+  padding-left: 2.2em;
+  margin-bottom: 0.5em;
+  font-family: var(--font-text-theme);
+}
 
-<p align="center">
-  Fait avec ☕ et de l'encre rouge par <strong>DOKTER</strong>
-</p>
+.markdown-rendered ol > li::before,
+.markdown-preview-view ol > li::before {
+  content: counter(press-counter);
+  position: absolute;
+  left: 0;
+  top: 0.05em;
+  width: 1.5em;
+  height: 1.5em;
+  background-color: var(--press-red);
+  color: #ffffff;
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 0.8em;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* Listes imbriquées */
+.markdown-rendered ol ol > li::before,
+.markdown-preview-view ol ol > li::before {
+  background-color: var(--press-red-dark);
+  font-size: 0.75em;
+}
+
+/* Puces non numérotées — style journal (tiret ou puce carrée) */
+.markdown-rendered ul,
+.markdown-preview-view ul {
+  list-style: none;
+  padding-left: 2.2em;
+}
+.markdown-rendered ul > li,
+.markdown-preview-view ul > li {
+  position: relative;
+  padding-left: 1.2em;
+  margin-bottom: 0.4em;
+}
+.markdown-rendered ul > li::before,
+.markdown-preview-view ul > li::before {
+  content: "▪";
+  position: absolute;
+  left: 0;
+  color: var(--press-red);
+  font-size: 1em;
+}
+.markdown-rendered ul ul > li::before,
+.markdown-preview-view ul ul > li::before {
+  content: "□";
+}
+.markdown-rendered ul ul ul > li::before,
+.markdown-preview-view ul ul ul > li::before {
+  content: "▷";
+}
+
+/* =========================================================
+   BLOCS DE TEXTE / PARAGRAPHES — Lora (serif journal)
+   ========================================================= */
+.markdown-rendered p,
+.markdown-preview-view p {
+  font-family: 'Lora', Georgia, 'Times New Roman', serif;
+  font-size: 1em;
+  line-height: 1.8;
+  margin: 0.7em 0 0.9em 0;
+  text-align: justify;
+  hyphens: auto;
+  color: var(--press-ink);
+  letter-spacing: 0.01em;
+}
+
+/* Blockquote — style encadré presse + machine à écrire (Special Elite) */
+.markdown-rendered blockquote,
+.markdown-preview-view blockquote {
+  border-left: 5px solid var(--press-red);
+  background: rgba(200,16,46,0.05);
+  margin: 1.2em 0;
+  padding: 0.7em 1em 0.7em 1.2em;
+  font-family: 'Special Elite', 'Courier Prime', 'Courier New', monospace !important;
+  font-style: normal;
+  color: var(--press-ink);
+  border-radius: 0 4px 4px 0;
+  position: relative;
+}
+.markdown-rendered blockquote p,
+.markdown-preview-view blockquote p {
+  font-family: 'Special Elite', 'Courier Prime', 'Courier New', monospace !important;
+  text-align: left;
+}
+.markdown-rendered blockquote::before,
+.markdown-preview-view blockquote::before {
+  content: "«";
+  position: absolute;
+  left: -0.1em;
+  top: -0.3em;
+  font-size: 3em;
+  color: var(--press-red);
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  line-height: 1;
+  opacity: 0.3;
+}
+
+/* =========================================================
+   BLOCS DE CODE — Fond bleu nuit + colorisation GitHub
+   ========================================================= */
+
+/* Code inline */
+.markdown-rendered code,
+.markdown-preview-view code,
+.cm-inline-code {
+  font-family: 'Courier Prime', 'Courier New', monospace !important;
+  font-size: 0.88em;
+  background-color: #0d1b2a !important;
+  color: #79c0ff !important;
+  padding: 0.12em 0.4em;
+  border-radius: 3px;
+  border: 1px solid #1f3550;
+  letter-spacing: 0;
+}
+
+/* Blocs de code pré-formatés */
+.markdown-rendered pre,
+.markdown-preview-view pre {
+  background-color: #0d1b2a !important;
+  border: 1px solid #1f3550;
+  border-radius: 6px;
+  padding: 1.2em 1.4em;
+  margin: 1.2em 0;
+  overflow-x: auto;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+  position: relative;
+}
+
+.markdown-rendered pre::before,
+.markdown-preview-view pre::before {
+  content: "◉ ◎ ○";
+  display: block;
+  color: #3a5068;
+  font-size: 0.7em;
+  margin-bottom: 0.6em;
+  letter-spacing: 0.3em;
+}
+
+.markdown-rendered pre code,
+.markdown-preview-view pre code {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  color: #e6edf3 !important;
+  font-size: 0.9em;
+  line-height: 1.6;
+}
+
+/* ── Colorisation syntaxique GitHub Dark ── */
+/* Tokens CodeMirror (mode édition live) */
+.cm-s-obsidian .cm-keyword       { color: #ff7b72 !important; }
+.cm-s-obsidian .cm-def           { color: #d2a8ff !important; }
+.cm-s-obsidian .cm-variable      { color: #e6edf3 !important; }
+.cm-s-obsidian .cm-variable-2    { color: #ffa657 !important; }
+.cm-s-obsidian .cm-string        { color: #a5d6ff !important; }
+.cm-s-obsidian .cm-string-2      { color: #a5d6ff !important; }
+.cm-s-obsidian .cm-number        { color: #79c0ff !important; }
+.cm-s-obsidian .cm-atom          { color: #79c0ff !important; }
+.cm-s-obsidian .cm-comment       { color: #8b949e !important; font-style: italic; }
+.cm-s-obsidian .cm-tag           { color: #7ee787 !important; }
+.cm-s-obsidian .cm-attribute     { color: #79c0ff !important; }
+.cm-s-obsidian .cm-qualifier     { color: #ffa657 !important; }
+.cm-s-obsidian .cm-property      { color: #79c0ff !important; }
+.cm-s-obsidian .cm-builtin       { color: #ffa657 !important; }
+.cm-s-obsidian .cm-operator      { color: #ff7b72 !important; }
+.cm-s-obsidian .cm-meta          { color: #8b949e !important; }
+.cm-s-obsidian .cm-bracket       { color: #c9d1d9 !important; }
+.cm-s-obsidian .cm-error         { color: #f85149 !important; }
+
+/* Tokens Prism/Shiki (rendu markdown) */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata          { color: #8b949e; font-style: italic; }
+
+.token.punctuation    { color: #c9d1d9; }
+
+.token.namespace      { opacity: .7; }
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted        { color: #79c0ff; }
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted       { color: #a5d6ff; }
+
+.token.operator,
+.token.entity,
+.token.url            { color: #ff7b72; }
+
+.token.atrule,
+.token.attr-value,
+.token.keyword        { color: #ff7b72; }
+
+.token.function,
+.token.class-name     { color: #d2a8ff; }
+
+.token.regex,
+.token.important,
+.token.variable       { color: #ffa657; }
+
+.token.important,
+.token.bold           { font-weight: bold; }
+.token.italic         { font-style: italic; }
+
+/* =========================================================
+   INTERFACE OBSIDIAN — Panneau latéral, onglets, etc.
+   ========================================================= */
+
+/* Barre latérale = Cormorant Garamond (La Dépêche style) */
+.nav-file-title,
+.nav-folder-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.9em;
+  color: var(--press-ink);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.nav-folder-title-content {
+  font-weight: 700;
+}
+
+.nav-file-title.is-active,
+.nav-folder-title.is-active {
+  color: var(--press-red);
+  background-color: rgba(200,16,46,0.10);
+  border-left: 3px solid var(--press-red);
+  font-weight: 700;
+}
+
+/* En-tête de fichier */
+.view-header-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--press-ink-blue);
+}
+
+/* Barre de titre de workspace */
+.workspace-tab-header.is-active .workspace-tab-header-inner-title {
+  color: var(--press-red);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* =========================================================
+   TITRE INLINE (propriété de note) — même style H1
+   ========================================================= */
+.inline-title {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  font-size: 2.4em !important;
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+  color: var(--press-white) !important;
+  background-color: var(--press-red) !important;
+  padding: 0.15em 0.4em !important;
+  letter-spacing: 0.04em !important;
+  text-shadow: 1px 2px 4px rgba(0,0,0,0.3) !important;
+  margin-bottom: 0.5em !important;
+  display: block !important;
+}
+
+/* =========================================================
+   SÉPARATEURS HORIZONTAUX — style filet typographique
+   ========================================================= */
+.markdown-rendered hr,
+.markdown-preview-view hr {
+  border: none;
+  border-top: 3px double var(--press-red);
+  margin: 1.5em 0;
+  opacity: 0.6;
+}
+
+/* =========================================================
+   TABLEAUX — style presse
+   ========================================================= */
+.markdown-rendered table,
+.markdown-preview-view table {
+  border-collapse: collapse;
+  width: 100%;
+  font-family: var(--font-text-theme);
+  font-size: 0.9em;
+  margin: 1em 0;
+  background: rgba(26,22,18,0.03);
+}
+
+.markdown-rendered th,
+.markdown-preview-view th {
+  background-color: var(--press-red);
+  color: var(--press-white);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.5em 0.8em;
+  border: 1px solid var(--press-red-dark);
+  font-size: 0.88em;
+}
+
+.markdown-rendered td,
+.markdown-preview-view td {
+  padding: 0.4em 0.8em;
+  border: 1px solid var(--press-paper-dark);
+  color: var(--press-ink);
+  vertical-align: top;
+}
+
+.markdown-rendered tr:nth-child(even) td,
+.markdown-preview-view tr:nth-child(even) td {
+  background: rgba(26,22,18,0.04);
+}
+
+/* =========================================================
+   TAGS — style étiquette rouge
+   ========================================================= */
+.tag {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.78em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: rgba(200,16,46,0.12);
+  color: var(--press-red-dark);
+  border: 1px solid rgba(200,16,46,0.4);
+  border-radius: 3px;
+  padding: 0.1em 0.45em;
+}
+.tag:hover {
+  background: var(--press-red);
+  color: var(--press-white);
+}
+
+/* =========================================================
+   LIENS
+   ========================================================= */
+.markdown-rendered a,
+.markdown-preview-view a {
+  color: var(--press-red);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: 600;
+}
+.markdown-rendered a:hover,
+.markdown-preview-view a:hover {
+  color: var(--press-red-dark);
+}
+
+/* Liens internes non résolus */
+.internal-link.is-unresolved {
+  color: #8c8478;
+  text-decoration: underline dotted;
+}
+
+/* =========================================================
+   RECHERCHE & SURBRILLANCE
+   ========================================================= */
+.search-result-file-matched-text,
+.markdown-rendered mark,
+.markdown-preview-view mark {
+  background-color: rgba(200,16,46,0.25);
+  color: var(--press-ink);
+  border-radius: 2px;
+  padding: 0 2px;
+}
+
+/* =========================================================
+   SCROLLBARS — discrets
+   ========================================================= */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: #8c8478;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--press-red); }
+
+/* =========================================================
+   PROPRIÉTÉS / FRONTMATTER
+   ========================================================= */
+.metadata-container {
+  background: rgba(26,22,18,0.05);
+  border-left: 4px solid var(--press-paper-dark);
+  padding: 0.6em 1em;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 0.85em;
+  margin-bottom: 1em;
+  border-radius: 0 4px 4px 0;
+}
+.metadata-property-key {
+  color: var(--press-ink-blue);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  letter-spacing: 0.08em;
+}
+
+/* =========================================================
+   CALLOUTS — style encadré presse
+   ========================================================= */
+.callout {
+  border-left: 5px solid var(--press-red);
+  background: rgba(200,16,46,0.06);
+  border-radius: 0 6px 6px 0;
+  padding: 0.8em 1.2em;
+  margin: 1em 0;
+}
+.callout-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--press-red);
+  font-size: 0.95em;
+}
+.callout-content {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 0.95em;
+  color: var(--press-ink);
+}
+
+/* =========================================================
+   FILE EXPLORER FOCUS — dimming des dossiers inactifs
+   ========================================================= */
+.nav-folder:not(.is-active):not(:hover) .nav-folder-title-content {
+  opacity: 0.65;
+  transition: opacity 0.2s ease;
+}
+.nav-folder:hover .nav-folder-title-content {
+  opacity: 1;
+}
+
+/* Dossier actif — chemin mis en valeur */
+.nav-folder.is-active > .nav-folder-title {
+  background: linear-gradient(to right, rgba(200,16,46,0.12), transparent);
+  border-left: 3px solid var(--press-red);
+  color: var(--press-red);
+  font-weight: 700;
+}
+
+/* =========================================================
+   MODAL / DIALOG
+   ========================================================= */
+.modal,
+.prompt {
+  background: var(--press-paper) !important;
+  border: 2px solid var(--press-red);
+  border-radius: 6px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+}
+.modal-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--press-red);
+  letter-spacing: 0.07em;
+}
+
+/* =========================================================
+   STATUS BAR
+   ========================================================= */
+.status-bar {
+  background: var(--press-ink) !important;
+  color: var(--press-paper) !important;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.8em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.status-bar-item {
+  color: #8c8478 !important;
+}
+.status-bar-item:hover {
+  color: var(--press-red) !important;
+}
+
+/* =========================================================
+   CHECKLIST — cases à cocher style journaliste
+   ========================================================= */
+.markdown-rendered input[type="checkbox"],
+.markdown-preview-view input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1em;
+  height: 1em;
+  border: 2px solid var(--press-red);
+  border-radius: 2px;
+  vertical-align: middle;
+  margin-right: 0.4em;
+  cursor: pointer;
+  position: relative;
+  background: transparent;
+}
+.markdown-rendered input[type="checkbox"]:checked,
+.markdown-preview-view input[type="checkbox"]:checked {
+  background: var(--press-red);
+}
+.markdown-rendered input[type="checkbox"]:checked::after,
+.markdown-preview-view input[type="checkbox"]:checked::after {
+  content: "✓";
+  position: absolute;
+  top: -2px;
+  left: 1px;
+  font-size: 0.85em;
+  color: white;
+  font-weight: 700;
+}
+
+/* =========================================================
+   GRAPH VIEW
+   ========================================================= */
+.graph-view.color-fill          { color: var(--press-paper-dark); }
+.graph-view.color-fill-highlight { color: var(--press-red); }
+.graph-view.color-circle        { color: var(--press-ink); }
+.graph-view.color-line          { color: var(--press-paper-dark); }
+.graph-view.color-text          { color: var(--press-ink); }
+
+/* =========================================================
+   COULEURS SPÉCIFIQUES ÉDITEUR SOURCE — CM6
+   ========================================================= */
+.cm-s-obsidian {
+  background-color: var(--press-paper) !important;
+  color: var(--press-ink) !important;
+  font-family: var(--font-text-theme) !important;
+}
+
+/* Surbrillance ligne active */
+.cm-s-obsidian .cm-activeLine {
+  background: rgba(200,16,46,0.05) !important;
+}
+.cm-s-obsidian .cm-activeLineGutter {
+  background: rgba(200,16,46,0.08) !important;
+}
+
+/* Sélection */
+.cm-s-obsidian .cm-selectionBackground,
+::selection {
+  background: rgba(200,16,46,0.22) !important;
+}
+
+/* Numéros de ligne */
+.cm-lineNumbers .cm-gutterElement {
+  color: #8c8478 !important;
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.8em;
+}
+
+/* =========================================================
+   ANIMATIONS SUBTILES
+   ========================================================= */
+.nav-file-title,
+.nav-folder-title,
+a, .tag, .cm-s-obsidian .cm-activeLine {
+  transition: color 0.15s ease, background 0.15s ease, opacity 0.15s ease;
+}
+
+/* =========================================================
+   FOND WORKSPACE — texture papier journal
+   ========================================================= */
+.workspace-split.mod-root {
+  background: var(--press-paper);
+}
+
+/* Simuler légère texture papier via dégradé */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(26,22,18,0.018) 0px,
+      rgba(26,22,18,0.018) 1px,
+      transparent 1px,
+      transparent 28px
+    );
+  pointer-events: none;
+  z-index: 0;
+}

@@ -1,0 +1,26 @@
+# Changelog
+
+Toutes les modifications notables de ce projet sont documentées dans ce fichier.
+
+Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/),
+et ce projet respecte le [Versionnage Sémantique](https://semver.org/lang/fr/).
+
+---
+
+## [1.0.0] — 2025
+
+### Ajouté
+- Fond papier journal recyclé gris (`#b8b0a0`) avec texture lignes subtiles
+- **H1** : Playfair Display, fond rouge `#c8102e`, texte blanc, capitales — style manchette
+- **H2–H6** : Cormorant Garamond bold italic, bleu encre `#1a3a5c`, hiérarchie décroissante
+- **Corps de texte** : Lora (serif journal), texte justifié
+- **Blockquotes & Footnotes** : Special Elite (machine à écrire ancienne)
+- **Blocs de code** : fond bleu nuit `#0d1b2a`, colorisation syntaxique GitHub Dark complète
+- **Listes numérotées** : compteur CSS blanc sur rond rouge
+- **Listes à puces** : hiérarchie ▪ → □ → ▷
+- Drop cap rouge sur le premier paragraphe
+- Tags style étiquette presse (fond rouge léger, capitales)
+- Callouts avec titre Cormorant Garamond
+- File Explorer Focus : dimming des dossiers inactifs au survol
+- Support mode clair et mode sombre
+- Status bar noir encre style journal

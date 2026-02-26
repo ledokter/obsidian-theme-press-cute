@@ -1,0 +1,26 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node (si outils de build ajoutés plus tard)
+node_modules/
+npm-debug.log*
+
+# Archives
+*.zip
+*.tar.gz
